@@ -1,0 +1,30 @@
+server:
+  port: 8089
+
+
+spring:
+  application:
+    name: core-user-service
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${mail.username}
+    password: ${mail.password}
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+
+host:
+  user:
+    management: core-user-management-service
+
+eureka:
+  service-url:
+    defaultZone: http://localhost:8081/eureka
+
+info:
+  app:
+    name: ${spring.application.name}
