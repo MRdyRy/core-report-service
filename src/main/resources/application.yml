@@ -17,10 +17,6 @@ spring:
 #          starttls:
 #            enable: true
 
-host:
-  user:
-    management: core-user-management-service
-
 eureka:
   service-url:
     defaultZone: http://localhost:8081/eureka
@@ -28,3 +24,41 @@ eureka:
 info:
   app:
     name: ${spring.application.name}
+
+
+db:
+  host: ${dbhost.report.service}
+  username: ${dbuser.report.service}
+  password: ${dbpassword.report.service}
+  pool:
+    maximum: ${dbmaxpool.report.service:10}
+    minimum: ${dbminpool.report.service:3}
+    idle: ${dbidlepool.report.service:10}
+    life:
+      time:
+        max: ${dbmaxlifetimepool.report.service:1800000}
+    leak:
+      detect:
+        threshold: ${dbleakdetectthreshold.report.service:0}
+    connect:
+      time:
+        out: ${dbconnecttimeout.report.service:30000}
+    keepAlive: ${dbkeepAlivepool.report.service:}800000
+  driver:
+    class:
+      name: ${dbdriver.report.service}
+
+kafka:
+  schema:
+    registry:
+      url: ${kafka.schm.registry:http://schema-registry:8081}
+  producer:
+    ack: all
+    linger: 5
+    rto:
+      ms: 60000
+    retry:
+      count: 5
+
+compression:
+  type: snappy
